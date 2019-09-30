@@ -1,0 +1,36 @@
+{
+  "name": "@openovate/webpack-jailbreak",
+  "version": "0.0.1",
+  "description": "Webpack Virtual Folders is a webpack plugin that lets you build virtual directories relative to the entry file instead of symlinking.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openovate/webpack-jailbreak.git"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-plugin",
+    "virtual"
+  ],
+  "author": "Christian Blanquera <cblanquera@openovate.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openovate/webpack-jailbreak/issues"
+  },
+  "homepage": "https://github.com/openovate/webpack-virtual-folders#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "jest": "^24.8.0",
+    "react": "^16.9.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
