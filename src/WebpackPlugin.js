@@ -100,7 +100,7 @@ class WebpackPlugin {
         continue;
       }
 
-      fileWatcher.emit('change', Date.now(), null);
+      watcher.emit('change', Date.now(), null);
       break;
     }
   }
