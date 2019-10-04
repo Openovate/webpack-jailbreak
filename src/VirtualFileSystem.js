@@ -77,7 +77,7 @@ class VirtualFileSystem {
     //if the folder name does not exist
     if (typeof this.folders[folder] === 'undefined') {
       //create one
-      this.folders[folder] = [];
+      this.folders[folder] = new Set();
     }
 
     //get the parent
@@ -88,7 +88,7 @@ class VirtualFileSystem {
 
     //if the dirname exist
     if (typeof this.folders[dirname] !== 'undefined') {
-      this.folders[dirname].push(folder);
+      this.folders[dirname].add(folder);
     }
 
     return folder;
@@ -172,9 +172,9 @@ class VirtualFileSystem {
     const folder = this.mkdir(path.dirname(file));
 
     //if the folder name exist
-    if (this.folders[folder] instanceof Array) {
-      //this is the exact same format expected by _addFolder()
-      this.folders[folder].push(file);
+    if (this.folders[folder] instanceof Set) {
+      //add it
+      this.folders[folder].add(file);
     }
 
     return this;

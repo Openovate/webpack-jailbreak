@@ -39,7 +39,7 @@ class WebpackPlugin {
       }
 
       for(const folder in this.virtualFileSystem.folders) {
-        this.mkdir(compiler, folder, this.virtualFileSystem.folders[folder]);
+        this.mkdir(compiler, folder, Array.from(this.virtualFileSystem.folders[folder]));
       }
     };
 

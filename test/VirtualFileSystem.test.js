@@ -27,14 +27,14 @@ test('VirtualFileSystem writeFile() test', () => {
   expect(folders1.indexOf('/foo/bar') !== -1).toBe(true);
   expect(folders1.indexOf('/foo') !== -1).toBe(true);
   expect(folders1.indexOf('/') !== -1).toBe(false);
-  expect(vfs.folders['/foo/bar'].length).toBe(1);
+  expect(Array.from(vfs.folders['/foo/bar']).length).toBe(1);
   expect(vfs.files['/foo/bar/zoo.txt']).toBe('foobar');
 
   vfs.writeFile('/tmp/bar/zoo.txt', 'foobar');
   const folders2 = Object.keys(vfs.folders);
   expect(folders2.indexOf('/tmp/bar') !== -1).toBe(true);
   expect(folders2.indexOf('/tmp') !== -1).toBe(false);
-  expect(vfs.folders['/tmp/bar'].length).toBe(1);
+  expect(Array.from(vfs.folders['/tmp/bar']).length).toBe(1);
   expect(vfs.files['/tmp/bar/zoo.txt']).toBe('foobar');
 });
 
@@ -48,8 +48,8 @@ test('VirtualFileSystem copy() test', () => {
   expect(folders1.indexOf('/foo/bar') !== -1).toBe(true);
   expect(folders1.indexOf('/foo') !== -1).toBe(true);
   expect(folders1.indexOf('/') !== -1).toBe(false);
-  expect(vfs.folders['/foo/bar/import-1'].length).toBe(2);
-  expect(vfs.folders['/foo/bar/import-2'].length).toBe(2);
+  expect(Array.from(vfs.folders['/foo/bar/import-1']).length).toBe(2);
+  expect(Array.from(vfs.folders['/foo/bar/import-2']).length).toBe(2);
   expect(vfs.files['/foo/bar/import-1/import-1.txt'].toString()).toBe("IMPORT 1\n");
   expect(vfs.files['/foo/bar/import-1/import-2.txt'].toString()).toBe("IMPORT 2\n");
   expect(vfs.files['/foo/bar/import-2/import-1.txt'].toString()).toBe("IMPORT 1\n");
@@ -84,4 +84,16 @@ test('VirtualFileSystem statsof() test', () => {
   expect(stats3.dev).toBe(null);
   expect(stats3.mode).toBe(null);
   expect(stats3.size).toBe(0);
+});
+
+test('VirtualFileSystem duplicate test', () => {
+  const vfs = new VirtualFileSystem(fileSystem);
+
+  vfs.mkdir('/bar/zoo');
+  vfs.mkdir('/bar/zoo');
+  vfs.writeFile('/foo/bar/zoo.txt', 'foobar');
+  vfs.writeFile('/foo/bar/zoo.txt', 'foobar');
+  const folders1 = Object.keys(vfs.folders);
+  expect(Object.keys(vfs.files).length).toBe(1);
+  expect(Array.from(vfs.folders['/bar']).length).toBe(1);
 });

@@ -1,6 +1,6 @@
 {
   "name": "@openovate/webpack-jailbreak",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Break out of Webpack's filesystem! This allows you to plugin virtual files and folders easily.",
   "main": "src/index.js",
   "scripts": {
