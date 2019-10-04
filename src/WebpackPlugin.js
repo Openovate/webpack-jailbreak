@@ -71,7 +71,7 @@ class WebpackPlugin {
    * @param {(String|Buffer)} content
    */
   updateFile(compiler, file, content) {
-    this.virtualFileSystem.writeFile[file] = content;
+    this.virtualFileSystem.writeFile(file, content);
     return this.writeFile(compiler, file, content);
   }
 
