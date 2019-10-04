@@ -63,6 +63,19 @@ class WebpackPlugin {
   }
 
   /**
+   * Updates a files content in the Virtual File System
+   * then writes it to webpacks file system
+   *
+   * @param {Compiler} compiler
+   * @param {String} file
+   * @param {(String|Buffer)} content
+   */
+  updateFile(compiler, file, content) {
+    this.virtualFileSystem.writeFile[file] = content;
+    return this.writeFile(compiler, file, content);
+  }
+
+  /**
    * Writes a file to webpack's _readFileStorage
    *
    * @param {Compiler} compiler
